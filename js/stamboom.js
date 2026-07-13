@@ -267,25 +267,25 @@ var Stamboom = (function() {
                     `graph [nodesep=0.15,splines=ortho,ranksep=0.35]` + `\n` +
                     `node [shape=box,fontname=Helvetica,fontsize=8,fixedsize=true,width=1.7,height=0.75,style=filled]` + `\n` +
 
-                    `// ----- Grand Parents -----\n` +
+                    `// ----- Prarodiče -----\n` +
                     `PaternalGrandFather [${node.draw(family.paternalgrandfather)}]` + `\n` +
                     `PaternalGrandMother [${node.draw(family.paternalgrandmother)}]` + `\n` +
                     `MaternalGrandFather [${node.draw(family.maternalgrandfather)}]` + `\n` +
                     `MaternalGrandMother [${node.draw(family.maternalgrandmother)}]` + `\n` +
-                    `// ----- Parents -----\n` +
+                    `// ----- Rodiče -----\n` +
                     `Father [${node.draw(family.father)}]` + `\n` +
                     `Mother [${node.draw(family.mother)}]` + `\n` +
-                    `// ----- Current -----\n` +
+                    `// ----- Aktuální osoba -----\n` +
                     `Current [${node.draw(family.current)}]` + `\n` +
-                    `// ----- Siblings -----\n` +
+                    `// ----- Sourozenci -----\n` +
                     (family.siblings || []).map(function(sibling, x) {
                         return `Sibling${x} [${node.draw(sibling)}]`;
                     }).join("\n") + `\n` +
-                    `// ----- Relations -----\n` +
+                    `// ----- Vztahy -----\n` +
                     (family.relations || []).map(function(relation, x) {
                         return `Relation${x} [${node.draw(relation.partner)}]`;
                     }).join("\n") + `\n` +
-                    `// ----- Children -----\n` +
+                    `// ----- Děti -----\n` +
                     (family.relations || []).map(function(relation, x) {
                         return (relation.children || []).map(function(child, y) {
                             return `Relation${x}Child${y} [${node.draw(child)}]`;
@@ -293,11 +293,11 @@ var Stamboom = (function() {
                         }).join("\n");
                     }).join("\n") + `\n` +
 
-                    `\n// ----- Settings -----\n` +
+                    `\n// ----- Nastavení -----\n` +
                     `node[color=green, label="", width=0, height=0];` + `\n` +
                     `edge[arrowtail=none, arrowhead=none, color=cornflowerblue];` + `\n` +
 
-                    `\n// ----- Paternal and Maternal Grand Parents -----\n` +
+                    `\n// ----- Prarodiče z otcovy a matčiny strany -----\n` +
                     `{rank=same;PaternalGrandFather;PaternalGrandParentsDot;PaternalGrandMother;MaternalGrandFather;MaternalGrandParentsDot;MaternalGrandMother}` + `\n` +
                     `PaternalGrandFather -> PaternalGrandParentsDot -> PaternalGrandMother` + `\n` +
                     `PaternalGrandParentsDot` + `\n` +
@@ -306,12 +306,12 @@ var Stamboom = (function() {
                     `MaternalGrandFather -> MaternalGrandParentsDot -> MaternalGrandMother` + `\n` +
                     `MaternalGrandParentsDot -> Mother` + `\n` +
 
-                    `\n// ----- Parents -----\n` +
+                    `\n// ----- Rodiče -----\n` +
                     `{rank=same;Father;ParentsDot;Mother}` + `\n` +
                     `Father -> ParentsDot -> Mother` + `\n` +
                     `ParentsDot -> ParentsChildrenDot` + `\n` +
 
-                    `\n// ----- Siblings -----\n` +
+                    `\n// ----- Sourozenci -----\n` +
                     `{rank=same;ParentsChildrenDot${family.siblings.map(function (sibling, x) { return `;Sibling${x}Dot`; }).join("")}}` + `\n` +
 
                     `ParentsChildrenDot` + family.siblings.map(function (sibling, x) { return ` -> Sibling${x}Dot`; }).join("") + `\n` +
@@ -320,7 +320,7 @@ var Stamboom = (function() {
                         return `Sibling${x}Dot -> Sibling${x}`;
                     }).join("\n") + `\n` +
 
-                    `\n// ----- Relations -----\n` +
+                    `\n// ----- Vztahy -----\n` +
                     `{rank=same;Current${family.relations.map(function (relation, x) { return `;Relation${x}Dot;Relation${x}`; }).join("")}${family.siblings.map(function (sibling, x) { return `;Sibling${x}`; }).join("")}}` + `\n` +
 
                     (
@@ -337,7 +337,7 @@ var Stamboom = (function() {
                             ``
                     ) +
 
-                    `\n// ----- Children -----\n` +
+                    `\n// ----- Děti -----\n` +
                     (family.relations || []).map(function (relation, x) {
                         if (relation.children.length > 0) {
                             return `` +
@@ -419,5 +419,5 @@ var Stamboom = (function() {
                 dragElement.addEventListener('touchstart', dragStart);
             }
 
-	return Stamboom;
+    return Stamboom;
 })();
