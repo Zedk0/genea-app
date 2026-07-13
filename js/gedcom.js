@@ -18,20 +18,12 @@ var Gedcom = (function() {
             this.data = [];
             return;
         }
-        /*
-        Todo: Use this instead of below when Firefox finally fixes their RegExp engine.
-        var regex1 = /(?<level>[0-9]+)\s+(?<pointer>@[^@]+@ |)(?<tag>[_a-zA-Z0-9]+)(?: |)(?<value>[^\n\r]*)|(?<invalid>[^\n\r]*)/g;
-        var regex2 = /(?<level>[0-9]+)\s+(?<pointer>@[^@]+@ |)(?<tag>[_a-zA-Z0-9]+)(?: |)(?<value>[^\n\r]*)|(?<invalid>[^\n\r]*)/;
-        */
+
         var regex1 = /([0-9]+)\s+(@[^@]+@ |)([_a-zA-Z0-9]+)(?: |)([^\n\r]*)|([^\n\r]*)/g;
         var regex2 = /([0-9]+)\s+(@[^@]+@ |)([_a-zA-Z0-9]+)(?: |)([^\n\r]*)|([^\n\r]*)/;
         // Parse individual rows into array, then parse each row into object{level, pointer(optional), tag, value(optional)}
         var dataArray = data
             .match(regex1) // Parse rows
-            /*
-            Todo: Use this instead of below when Firefox finally fixes their RegExp engine.
-            .map(row => row.match(regex2).groups) // Parse items
-            */
             .map(function(row) {
                 var match = row.match(regex2); // Parse items
                 return {
@@ -154,7 +146,7 @@ var Gedcom = (function() {
         if (!this.data) return null;
         var person = this.data.find(item => item.level == 0 && item.pointer == id && item.tag == "INDI");
         if (person && person.items) {
-            var name = ((person.items.find(item => item.tag == "NAME") || {}).value || "Unknown").replace(/\//g, "");
+            var name = ((person.items.find(item => item.tag == "NAME") || {}).value || "Neznámý").replace(/\//g, "");
             var gender = (person.items.find(item => item.tag == "SEX") || {}).value;
             var birth = (((person.items.find(detail => detail.tag == "BIRT") || {}).items || []).find(detail => detail.tag == "DATE") || {}).value
             var death = (((person.items.find(detail => detail.tag == "DEAT") || {}).items || []).find(detail => detail.tag == "DATE") || {}).value
@@ -169,7 +161,7 @@ var Gedcom = (function() {
                 "items": person.items
             };
         } else {
-            return {}; // Person not found
+            return {}; // Osoba nenalezena
         }
     }
 
@@ -300,7 +292,7 @@ var Gedcom = (function() {
             var paternalgrandfather = gedcom.father(fatherId).id;
             return gedcom.person(paternalgrandfather);
         } catch {
-            console.log(`No paternal grand father found for ${id}`);
+            console.log(`U ${id} nebyl nalezen dědeček z otcovy strany`);
             return {};
         }
     }
@@ -310,7 +302,7 @@ var Gedcom = (function() {
             var paternalgrandmother = gedcom.mother(fatherId).id;
             return gedcom.person(paternalgrandmother);
         } catch {
-            console.log(`No paternal grand father found for ${id}`);
+            console.log(`U ${id} nebyla nalezena babička z otcovy strany`);
             return {};
         }
     }
@@ -320,7 +312,7 @@ var Gedcom = (function() {
             var maternalgrandfather = gedcom.father(motherId).id;
             return gedcom.person(maternalgrandfather);
         } catch {
-            console.log(`No paternal grand father found for ${id}`);
+            console.log(`U ${id} nebyl nalezen dědeček z matčiny strany`);
             return {};
         }
     }
@@ -330,7 +322,7 @@ var Gedcom = (function() {
             var maternalgrandmother = gedcom.mother(motherId).id;
             return gedcom.person(maternalgrandmother);
         } catch {
-            console.log(`No paternal grand father found for ${id}`);
+            console.log(`U ${id} nebyla nalezena babička z matčiny strany`);
             return {};
         }
     }
@@ -339,7 +331,7 @@ var Gedcom = (function() {
             var father = this.data.find(fam => fam.tag == "FAM" && fam.items.find(member => member.tag == "CHIL" && member.value == id)).items.find(member => member.tag == "HUSB");
             return gedcom.person(father.value);
         } catch {
-            console.log(`No father found for ${id}`);
+            console.log(`Otec pro ${id} nebyl nalezen`);
             return {};
         }
     }
@@ -348,7 +340,7 @@ var Gedcom = (function() {
             var mother = this.data.find(fam => fam.tag == "FAM" && fam.items.find(member => member.tag == "CHIL" && member.value == id)).items.find(member => member.tag == "WIFE");
             return gedcom.person(mother.value);
         } catch {
-            console.log(`No mother found for ${id}`);
+            console.log(`Matka pro ${id} nebyla nalezena`);
             return {};
         }
     }
@@ -357,7 +349,7 @@ var Gedcom = (function() {
             var siblings = this.data.find(fam => fam.tag == "FAM" && fam.items.find(member => member.tag == "CHIL" && member.value == id)).items.filter(member => member.tag == "CHIL" && member.value != id);
             return siblings.map(sibling => gedcom.person(sibling.value));
         } catch {
-            console.log(`No siblings found for ${id}`);
+            console.log(`Sourozenci pro ${id} nebyli nalezeni`);
             return [];
         }
     }
@@ -375,7 +367,7 @@ var Gedcom = (function() {
                 return output;
             });
         } catch {
-            console.log(`No relations found for ${id}`);
+            console.log(`Vztahy pro ${id} nebyly nalezeny`);
             return [];
         }
     }
