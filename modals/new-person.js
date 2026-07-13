@@ -3,40 +3,40 @@ Vue.component('new-person', {
         <div id="modalNewPerson" class="modal">
             <div class="modal-content">
                 <template>
-                    <h4>Add</h4>
+                    <h4>Přidat</h4>
                     <p>
                         <label>
                             <input type="radio" value="parent" v-model="newPerson.type" :disabled="parents().length>=2" />
-                            <span>Parent<span v-if="parents().length>=2"> - Already has two or more parents.</span></span>
+                            <span>Rodič<span v-if="parents().length>=2"> - Osoba již má dva nebo více rodičů.</span></span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input type="radio" value="relation" v-model="newPerson.type" />
-                            <span>Relation</span>
+                            <span>Vztah / Partner</span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input type="radio" value="sibling" v-model="newPerson.type" :disabled="parents().length==0" />
-                            <span>Sibling<span v-if="parents().length==0"> - Add a Parent first.</span></span>
+                            <span>Sourozenec<span v-if="parents().length==0"> - Nejprve přidejte rodiče.</span></span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input type="radio" value="child" v-model="newPerson.type" :disabled="relations().length==0" />
-                            <span>Child<span v-if="relations().length==0"> - Add a Relation first.</span></span>
+                            <span>Dítě<span v-if="relations().length==0"> - Nejprve přidejte vztah.</span></span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input type="radio" value="unrelated" v-model="newPerson.type" />
-                            <span>Unrelated</span>
+                            <span>Nepříbuzná osoba</span>
                         </label>
                     </p>
                 </template>
                 <template v-if="newPerson.type=='child'">
-                    <h4>Relation</h4>
+                    <h4>Ke kterému vztahu</h4>
                     <p v-for="relation in relations()">
                         <label>
                             <input type="radio" :value="relation" v-model="newPerson.relation" />
@@ -45,63 +45,63 @@ Vue.component('new-person', {
                     </p>
                 </template>
                 <template v-if="(newPerson.type!='child' && newPerson.type!='unrelated') || (newPerson.type=='child' && newPerson.relation)">
-                    <h4>How</h4>
+                    <h4>Způsob přidání</h4>
                     <p>
                         <label>
                             <input type="radio" value="new" v-model="newPerson.action" />
-                            <span>Create new person</span>
+                            <span>Vytvořit novou osobu</span>
                         </label>
                     </p>
                     <p>
                         <label>
                             <input type="radio" value="link" v-model="newPerson.action" />
-                            <span>Link with existing person</span>
+                            <span>Propojit s existující osobou</span>
                         </label>
                     </p>
                 </template>
                 <template v-if="newPerson.action=='new' || newPerson.type=='unrelated'">
-                    <h4>New Person</h4>
+                    <h4>Nová osoba</h4>
                     <div class="row">
                         <div class="col s6">
                             <div class="input-field">
-                                <label for="givenName" class="active">Given Name</label>
+                                <label for="givenName" class="active">Křestní jméno</label>
                                 <input id="givenName" v-model="newPerson.givenName" type="text"/>
                             </div>
                         </div>
                         <div class="col s6">
                             <div class="input-field">
-                                <label for="surName" class="active">Surname</label>
+                                <label for="surName" class="active">Příjmení</label>
                                 <input id="surName" v-model="newPerson.surName" type="text"/>
                             </div>
                         </div>
                         <div class="col s6">
                             <div class="input-field">
-                                <label for="sex" class="active">Sex</label>
+                                <label for="sex" class="active">Pohlaví</label>
                                 <input id="sex" v-model="newPerson.sex" class="autocomplete" type="text"/>
                             </div>
                         </div>
                         <div class="col s12">
-                            <a class="btn waves-effect waves-light modal-close" v-on:click="create();"><i class="material-icons left">person_add</i>Create</a>
+                            <a class="btn waves-effect waves-light modal-close" v-on:click="create();"><i class="material-icons left">person_add</i>Vytvořit</a>
                         </div>
                     </div>
                 </template>
                 <template v-if="newPerson.action=='link'">
-                    <h4>Existing Person</h4>
+                    <h4>Existující osoba</h4>
                     <div class="row">
                         <div class="col s6">
                             <div class="input-field">
                                 <i class="material-icons prefix">person</i>
-                                <input id="existingPerson" type="text" class="autocomplete" placeholder="Find Person" />
+                                <input id="existingPerson" type="text" class="autocomplete" placeholder="Hledat osobu" />
                             </div>
                         </div>
                         <div class="col s12">
-                            <a class="btn waves-effect waves-light modal-close" v-on:click="link();"><i class="material-icons left">link</i>Link</a>
+                            <a class="btn waves-effect waves-light modal-close" v-on:click="link();"><i class="material-icons left">link</i>Propojit</a>
                         </div>
                     </div>
                 </template>
             </div>
             <div class="modal-footer">
-                <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+                <a class="modal-close waves-effect waves-green btn-flat">Zavřít</a>
             </div>
         </div>
     `,
