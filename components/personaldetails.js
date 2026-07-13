@@ -4,7 +4,7 @@ Vue.component('personaldetails', {
             <div class="row" style="margin-bottom: 0;">
                 <div class="col s12 offset-m1">
                     <h1 class="header">
-                        Personal Details
+                        Osobní údaje
                     </h1>
                 </div>
             </div>
@@ -17,7 +17,7 @@ Vue.component('personaldetails', {
                                 <label>
                                     <input type="checkbox" v-model="advancedMode">
                                     <span class="lever"></span>
-                                    Advanced fields
+                                    Pokročilá pole
                                 </label>
                             </div>
                         </li>
@@ -28,61 +28,61 @@ Vue.component('personaldetails', {
             <!-- Modals -->
             <div id="modalEditPersonalDetail" class="modal">
                 <div class="modal-content">
-                    <h4>Edit</h4>
+                    <h4>Upravit</h4>
                     <div class="input-field">
                         <label for="editTag" :class="{active:modalEditPersonalDetail.tag}">Tag</label>
                         <input id="editTag" type="text" v-model="modalEditPersonalDetail.tag" />
                     </div>
                     <div class="input-field">
-                        <label for="editValue" class="active">Value</label>
+                        <label for="editValue" class="active">Hodnota</label>
                         <textarea id="editValue" class="materialize-textarea" v-model="modalEditPersonalDetail.value"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a class="modal-close waves-effect waves-green btn-flat">Zavřít</a>
                 </div>
             </div>
             <div id="modalAddPersonalDetail" class="modal">
                 <div class="modal-content">
-                    <h4>Add</h4>
+                    <h4>Přidat</h4>
                     <ul class="collection with-header">
-                        <li class="collection-header"><h5>Foundation</h5></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('NAME')">Name<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('BIRTH')">Birth<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('DEATH')">Death<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('BURIAL')">Burial<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-header"><h5>Life Events</h5></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('BAPM')">Baptism<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('CHR')">Christening<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('CENS')">Census<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('CREM')">Cremation<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('GRAD')">Graduation<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('EMIG')">Emigration<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('IMMI')">Immigration<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('NATU')">Naturalization<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('RETI')">Retirement<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('PROB')">Probate<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('WILL')">Will<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-header"><h5>Attributes</h5></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('OCCU')">Occupation<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('EDUC')">Education<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('RELI')">Religion<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('RESI')">Residence<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('NATI')">Nationality<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('CAST')">Caste<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('DSCR')">Physical Description<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('NICK')">Nickname<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('IDNO')">Identification Number<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('SSN')">Social Security Number<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-header"><h5>Annotation</h5></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('NOTES')">Notes<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-header"><h5>Základní údaje</h5></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('NAME')">Jméno<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('BIRTH')">Narození<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('DEATH')">Úmrtí<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('BURIAL')">Pohřeb<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-header"><h5>Životní události</h5></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('BAPM')">Křest<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('CHR')">Křtiny<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('CENS')">Sčítání lidu<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('CREM')">Kremace<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('GRAD')">Promoce<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('EMIG')">Emigrace<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('IMMI')">Imigrace<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('NATU')">Naturalizace<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('RETI')">Odchod do důchodu<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('PROB')">Dědické řízení<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('WILL')">Závěť<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-header"><h5>Atributy</h5></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('OCCU')">Povolání<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('EDUC')">Vzdělání<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('RELI')">Náboženství<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('RESI')">Bydliště<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('NATI')">Národnost<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('CAST')">Kasta<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('DSCR')">Fyzický popis<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('NICK')">Přezdívka<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('IDNO')">Identifikační číslo<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('SSN')">Číslo sociálního pojištění<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-header"><h5>Anotace</h5></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('NOTES')">Poznámky<a class="secondary-content"><i class="material-icons">add</i></a></li>
                         <li class="collection-item modal-close" v-on:click="addItem('TEXT')">Text<a class="secondary-content"><i class="material-icons">add</i></a></li>
-                        <li class="collection-header"><h5>Custom</h5></li>
-                        <li class="collection-item modal-close" v-on:click="addItem('CUSTOM')">Custom<a class="secondary-content"><i class="material-icons">add</i></a></li>
+                        <li class="collection-header"><h5>Vlastní</h5></li>
+                        <li class="collection-item modal-close" v-on:click="addItem('CUSTOM')">Vlastní přidání<a class="secondary-content"><i class="material-icons">add</i></a></li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    <a class="modal-close waves-effect waves-green btn-flat">Zavřít</a>
                 </div>
             </div>
             <div style="position: fixed; bottom: 45px; right: 24px;">
@@ -241,13 +241,13 @@ Vue.component('personaldetails-item', {
                 <template v-else-if="detail.tag=='BIRT'">
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '1'" class="active">Date of Birth</label>
+                            <label :for="id + '1'" class="active">Datum narození</label>
                             <input :id="id + '1'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='DATE')] || {}).value"/>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '2'" class="active">Place of Birth</label>
+                            <label :for="id + '2'" class="active">Místo narození</label>
                             <input :id="id + '2'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='PLAC')] || {}).value"/>
                         </div>
                     </div>
@@ -256,13 +256,13 @@ Vue.component('personaldetails-item', {
                 <template v-else-if="detail.tag=='DEAT'">
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '1'" class="active">Date of Death</label>
+                            <label :for="id + '1'" class="active">Datum úmrtí</label>
                             <input :id="id + '1'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='DATE')] || {}).value"/>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '2'" class="active">Place of Death</label>
+                            <label :for="id + '2'" class="active">Místo úmrtí</label>
                             <input :id="id + '2'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='PLAC')] || {}).value"/>
                         </div>
                     </div>
@@ -271,13 +271,13 @@ Vue.component('personaldetails-item', {
                 <template v-else-if="detail.tag=='BURI'">
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '1'" class="active">Date of Burial</label>
+                            <label :for="id + '1'" class="active">Datum pohřbu</label>
                             <input :id="id + '1'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='DATE')] || {}).value"/>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '2'" class="active">Place of Burial</label>
+                            <label :for="id + '2'" class="active">Místo pohřbu</label>
                             <input :id="id + '2'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='PLAC')] || {}).value"/>
                         </div>
                     </div>
@@ -286,13 +286,13 @@ Vue.component('personaldetails-item', {
                 <template v-else-if="['BAPM','CHR','CENS','CREM','GRAD','EMIG','IMMI','NATU'].includes(detail.tag)">
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '1'" class="active">Date of {{tag(detail.tag).name}}</label>
+                            <label :for="id + '1'" class="active">Datum ({{tag(detail.tag).name}})</label>
                             <input :id="id + '1'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='DATE')] || {}).value"/>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '2'" class="active">Place of {{tag(detail.tag).name}}</label>
+                            <label :for="id + '2'" class="active">Místo ({{tag(detail.tag).name}})</label>
                             <input :id="id + '2'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='PLAC')] || {}).value"/>
                         </div>
                     </div>
@@ -301,13 +301,13 @@ Vue.component('personaldetails-item', {
                 <template v-else-if="detail.tag=='RESI'">
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '1'" class="active">Date of Residence</label>
+                            <label :for="id + '1'" class="active">Datum pobytu</label>
                             <input :id="id + '1'" type="text" v-model="(detail.items[detail.items.findIndex(x => x.tag=='DATE')] || {}).value"/>
                         </div>
                     </div>
                     <div class="col s6">
                         <div class="input-field">
-                            <label :for="id + '2'" class="active">Address</label>
+                            <label :for="id + '2'" class="active">Adresa</label>
                             <textarea :id="id + '2'" class="materialize-textarea" v-model="(detail.items[detail.items.findIndex(x => x.tag=='ADDR')] || {}).value"></textarea>
                         </div>
                     </div>
@@ -320,8 +320,8 @@ Vue.component('personaldetails-item', {
                     </blockquote>
                     <textarea :id="id" class="materialize-textarea" v-model="detail.value" v-if="edit"></textarea>
                     <div class="right-align">
-                        <a class="waves-effect waves-light btn" v-if="!edit" v-on:click="edit=true; focus(id);"><i class="material-icons left">edit</i>Edit</a>
-                        <a class="waves-effect waves-light btn" v-if="edit" v-on:click="edit=false"><i class="material-icons left">vertical_align_top</i>Collapse</a>
+                        <a class="waves-effect waves-light btn" v-if="!edit" v-on:click="edit=true; focus(id);"><i class="material-icons left">edit</i>Upravit</a>
+                        <a class="waves-effect waves-light btn" v-if="edit" v-on:click="edit=false"><i class="material-icons left">vertical_align_top</i>Sbalit</a>
                     </div>
                 </template>
 
@@ -401,7 +401,7 @@ Vue.component('personaldetails-item', {
             modal.open();
         },
         deleteItem: function() {
-            if (window.confirm("Confirm you want to remove this item.")) {
+            if (window.confirm("Opravdu chcete tuto položku odstranit?")) {
                 this.$parent.items.splice(this.index, 1);
             }
         },
