@@ -2,10 +2,10 @@
 <html>
 
 <head>
-    <title>Genea.app - Build your family tree</title>
+    <title>Genea.app - Vytvořte si rodokmen</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Genea is a free tool to author your family tree without an account. Genea gives you complete control over where to store your GEDCOM ancestry heritage data." />
+    <meta name="description" content="Genea je bezplatný nástroj pro tvorbu rodokmenu bez nutnosti mít účet. Genea vám dává plnou kontrolu nad tím, kam si uložíte svá data o předcích ve formátu GEDCOM." />
     <meta name="keywords" content="genea,genealogy,software,free,open source,gedcom,family tree,family lineage,heritage,myheritage,web based,online,genealogist,historian,ancestors,archive,ancestry,legacy,birth,death,funeral,marriage,privacy by design" />
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- Dependencies -->
@@ -41,88 +41,85 @@
             <h1 class="header">Genea.app</h1>
             <div class="divider"></div>
             <div class="section" v-if="!isNative()">
-                <h4 class="light">Build and edit your family tree; completely free!</h4>
+                <h4 class="light">Vytvářejte a upravujte svůj rodokmen; zcela zdarma!</h4>
                 <p style="text-align: justify;">
-                    Genea is a <a href="https://en.wikipedia.org/wiki/Privacy_by_design" target="_blank">privacy by design</a> and <a href="https://github.com/genea-app/genea-app" target="_blank">open source</a> tool anyone can use to author or edit their
-                    family tree. Your data is formatted following the <a href="https://www.gedcom.org/" target="_blank">GEDCOM</a> specifications so it can be exchanged with other genealogy services. All processing is done in the browser, leaving you
-                    in control on where to save your data, avoiding any type of vendor lock-in.
+                    Genea je <a href="https://github.com/genea-app/genea-app" target="_blank">open source</a> nástroj s <a href="https://en.wikipedia.org/wiki/Privacy_by_design" target="_blank">důrazem na soukromí</a>, který může kdokoli použít k vytvoření nebo úpravě svého rodokmenu. Vaše data jsou formátována podle specifikací <a href="https://www.gedcom.org/" target="_blank">GEDCOM</a>, takže je lze vyměňovat s jinými genealogickými službami. Veškeré zpracování probíhá v prohlížeči, což vám ponechává plnou kontrolu nad tím, kam svá data uložíte, a brání uzamčení k jednomu dodavateli.
                 </p>
                 <p>
                     <a href="screenshots/doe_family.mp4" target="_blank">
-                        <img src="screenshots/doe_family.png" title="Family tree preview" class="responsive-img" />
+                        <img src="screenshots/doe_family.png" title="Náhled rodokmenu" class="responsive-img" />
                     </a>
                 </p>
                 <p style="text-align: justify;">
-                    You can use Genea both on your mobile devices as well as on your desktop. The changes you make are persistently stored on your device. To work on your family tree from multiple devices, you can either save the GEDCOM file when you are done and exchange
-                    it for example via e-mail or a cloud service like Dropbox, or you can use the built in Git integration which lets you store your work in any private or public repository.
+                    Aplikaci Genea můžete používat jak na mobilních zařízeních, tak na počítači. Provedené změny se trvale ukládají do vašeho zařízení. Chcete-li na svém rodokmenu pracovat z více zařízení, můžete po dokončení uložit soubor GEDCOM a poslat si ho například e-mailem nebo přes cloudovou službu jako je Dropbox. Také můžete použít vestavěnou integraci Gitu, která vám umožní ukládat vaši práci do jakéhokoli soukromého či veřejného repozitáře.
                 </p>
             </div>
             <div class="section" v-if="isNative()">
-                <h4 class="light">Build and edit your family tree</h4>
+                <h4 class="light">Vytvářejte a upravujte svůj rodokmen</h4>
                 <p style="text-align: justify;">
-                    Create a new family tree from scratch, or start from a GEDCOM file previously exported from other services like MyHeritage, FamilySearch, or Ancestry.
+                    Vytvořte nový rodokmen od nuly, nebo začněte se souborem GEDCOM, který jste dříve exportovali z jiných služeb, jako je MyHeritage, FamilySearch nebo Ancestry.
                 </p>
             </div>
             <div class="section" v-if="isLocalStorage()" v-cloak>
                 <button class="btn-large waves-effect waves-light  red lighten-2" v-on:click="page='tree'; loadLocalStorage()">
                     <i class="material-icons left">sync</i>
-                    Continue with current family tree
+                    Pokračovat s aktuálním rodokmenem
                 </button>
             </div>
             <div class="section">
                 <button class="btn-large waves-effect waves-light teal darken-3" v-on:click="loadExample('new')">
                     <i class="material-icons left">create</i>
-                    Start new family tree
+                    Začít nový rodokmen
                 </button>
                 <label class="btn-large waves-effect waves-light" v-on:click="openGitModal('load')">
-					<i class="material-icons left">cloud_download</i>
-					Open
-				</label>
+                    <i class="material-icons left">cloud_download</i>
+                    Otevřít z Gitu
+                </label>
                 <label class="btn-large waves-effect waves-light">
-					<i class="material-icons left">get_app</i>
-					Upload
-					<input type="file" style="display: none;" accept=".gedcom,.ged,.txt" v-on:change="loadFile">
-				</label>
+                    <i class="material-icons left">get_app</i>
+                    Nahrát soubor
+                    <input type="file" style="display: none;" accept=".gedcom,.ged,.txt" v-on:change="loadFile">
+                </label>
             </div>
             <div class="section">
-                <h4 class="light">Examples</h4>
+                <h4 class="light">Příklady</h4>
                 <p>
-                    Explore Genea with these sample trees.
+                    Prozkoumejte aplikaci Genea na těchto ukázkových rodokmenech.
                 </p>
             </div>
             <div class="section">
                 <div class="collection left-align">
                     <a href="#" v-on:click="loadExample('royal92')" class="collection-item avatar">
-                        <span class="title">Royal '92</span>
+                        <span class="title">Královská rodina '92</span>
                         <img src="sample/royal92.png" alt="" class="circle">
-                        <p>Features the Kings and Queens of Europe, including Great Britain. Published back in 1992 by Denis R. Reid it is perhaps a little out of date, but it is a classic.</p>
+                        <p>Obsahuje krále a královny Evropy, včetně Velké Británie. Vydal jej v roce 1992 Denis R. Reid. Je možná už trochu zastaralý, ale je to klasika.</p>
                     </a>
                     <a href="#" v-on:click="loadExample('pres2020')" class="collection-item avatar">
-                        <span class="title">Presidents 2020</span>
+                        <span class="title">Prezidenti 2020</span>
                         <img src="sample/pres2020.png" alt="" class="circle">
-                        <p>An excellent collection of the presidents of the US, with their ancestors and descendants updated to 2020 by Paul Stobbe.</p>
+                        <p>Vynikající sbírka prezidentů USA s jejich předky a potomky, kterou do roku 2020 aktualizoval Paul Stobbe.</p>
                     </a>
                     <a href="#" v-on:click="loadExample('harrypotter')" class="collection-item avatar">
                         <span class="title">Harry Potter</span>
                         <img src="sample/harrypotter.png" alt="" class="circle">
-                        <p>Fictional family tree for the Harry Potter series, created by famousfamilytrees.blogspot.com.</p>
+                        <p>Fiktivní rodokmen k sérii o Harrym Potterovi, který vytvořil web famousfamilytrees.blogspot.com.</p>
                     </a>
                 </div>
             </div>
             <div class="section" v-if="isDebug()">
-                <h4 class="light">Debug</h4>
+                <h4 class="light">Ladění (Debug)</h4>
             </div>
             <div class="section" v-if="isDebug()">
-                <button class="btn-large waves-effect waves-light" v-on:click="loadExample('gedcom1')">Debug Example 1</button>
+                <button class="btn-large waves-effect waves-light" v-on:click="loadExample('gedcom1')">Příklad ladění 1</button>
             </div>
             <div class="divider" v-if="!isNative()"></div>
             <div class="section" v-if="!isNative()">
                 <p>
-                    <a href="mailto:contact@genea.app" target="_blank">contact</a> -
-                    <a href="https://github.com/genea-app/genea-app/issues" target="_blank">issues</a> -
+                    <a href="mailto:contact@genea.app" target="_blank">kontakt</a> -
+                    <a href="https://github.com/genea-app/genea-app/issues" target="_blank">chyby</a> -
                     <a href="https://github.com/genea-app/genea-app" target="_blank">github</a> -
-                    <a href="https://github.com/genea-app/genea-app/blob/main/LICENSE" target="_blank">license</a> -
-                    <a href="https://github.com/genea-app/genea-app/blob/main/PRIVACY.md" target="_blank">privacy</a>
+                    <a href="https://github.com/genea-app/genea-app/blob/main/LICENSE" target="_blank">licence</a> -
+                    <a href="https://github.com/genea-app/genea-app/blob/main/PRIVACY.md" target="_blank">soukromí</a>
                 </p>
             </div>
         </div>
@@ -151,7 +148,7 @@
                     <div class="row" style="margin-top: 0; margin-bottom: 0;">
                         <div class="input-field col s11 offset-s1" style="margin-top: 0; margin-bottom: 0;">
                             <i class="material-icons" style="position: absolute; display: inline-block; right: 24px; top: 15px;">search</i>
-                            <input id="search" placeholder="Find Person" class="autocomplete" style="font-weight: 300; color: #777; border: 0;" />
+                            <input id="search" placeholder="Hledat osobu" class="autocomplete" style="font-weight: 300; color: #777; border: 0;" />
                         </div>
                     </div>
                 </li>
@@ -159,45 +156,45 @@
                     <div class="divider"></div>
                 </li>
                 <li>
-                    <a class="subheader">View</a>
+                    <a class="subheader">Zobrazit</a>
                 </li>
                 <li class="bold sidenav-close" :class="{active: page=='tree'}">
-                    <a :href="'#/tree/' + person.id" class="waves-effect waves-teal"><i class="material-icons">account_tree</i>Family Tree</a>
+                    <a :href="'#/tree/' + person.id" class="waves-effect waves-teal"><i class="material-icons">account_tree</i>Rodokmen</a>
                 </li>
                 <li class="bold sidenav-close" :class="{active: page=='personaldetails'}">
-                    <a :href="'#/personaldetails/' + person.id" class="waves-effect waves-teal"><i class="material-icons">person</i>Personal Details</a>
+                    <a :href="'#/personaldetails/' + person.id" class="waves-effect waves-teal"><i class="material-icons">person</i>Osobní údaje</a>
                 </li>
                 <li class="bold sidenav-close" :class="{active: page=='relations'}">
-                    <a :href="'#/relations/' + person.id" class="waves-effect waves-teal"><i class="material-icons">people</i>Relations and Children</a>
+                    <a :href="'#/relations/' + person.id" class="waves-effect waves-teal"><i class="material-icons">people</i>Vztahy a děti</a>
                 </li>
                 <li>
                     <div class="divider"></div>
                 </li>
                 <li>
-                    <a class="subheader">Actions</a>
+                    <a class="subheader">Akce</a>
                 </li>
                 <li class="bold sidenav-close">
-                    <a @click.prevent="saveGit();" v-if="isGitConnected() && !git.outstandingChanges" class="waves-effect waves-teal grey-text"><i class="material-icons">published_with_changes</i>Up to date</a>
-                    <a @click.prevent="saveGit();" v-if="isGitConnected() && git.outstandingChanges" class="waves-effect waves-teal"><i class="material-icons">cloud_upload</i>Unsaved changes</a>
-                    <a @click.prevent="saveGit();" v-if="!isGitConnected()" class="waves-effect waves-teal"><i class="material-icons">cloud_upload</i>Save to Git</a>
+                    <a @click.prevent="saveGit();" v-if="isGitConnected() && !git.outstandingChanges" class="waves-effect waves-teal grey-text"><i class="material-icons">published_with_changes</i>Aktuální</a>
+                    <a @click.prevent="saveGit();" v-if="isGitConnected() && git.outstandingChanges" class="waves-effect waves-teal"><i class="material-icons">cloud_upload</i>Neuložené změny</a>
+                    <a @click.prevent="saveGit();" v-if="!isGitConnected()" class="waves-effect waves-teal"><i class="material-icons">cloud_upload</i>Uložit do Gitu</a>
                 </li>
                 <li class="bold sidenav-close" v-if="!isNative()">
-                    <a @click.prevent="saveFile();" class="waves-effect waves-teal"><i class="material-icons">save_alt</i>Download</a>
+                    <a @click.prevent="saveFile();" class="waves-effect waves-teal"><i class="material-icons">save_alt</i>Stáhnout</a>
                 </li>
                 <li class="bold sidenav-close" v-if="isNative()">
-                    <a @click.prevent="shareFile();" class="waves-effect waves-teal"><i class="material-icons">share</i>Share</a>
+                    <a @click.prevent="shareFile();" class="waves-effect waves-teal"><i class="material-icons">share</i>Sdílet</a>
                 </li>
                 <li class="bold sidenav-close">
-                    <a @click="close();" class="waves-effect waves-teal"><i class="material-icons">logout</i>Close</a>
+                    <a @click="close();" class="waves-effect waves-teal"><i class="material-icons">logout</i>Zavřít</a>
                 </li>
                 <li v-if="isDebug()">
                     <div class="divider"></div>
                 </li>
                 <li v-if="isDebug()">
-                    <a class="subheader">Development</a>
+                    <a class="subheader">Vývoj</a>
                 </li>
                 <li class="bold sidenav-close" :class="{active: page=='debug'}" v-if="isDebug()">
-                    <a :href="'#/debug'" class="waves-effect waves-teal"><i class="material-icons">adb</i>Debug</a>
+                    <a :href="'#/debug'" class="waves-effect waves-teal"><i class="material-icons">adb</i>Ladění (Debug)</a>
                 </li>
             </ul>
         </header>
@@ -223,38 +220,37 @@
         <div id="modalGit" class="modal">
             <div class="modal-content">
                 <div class="row">
-                    <h4>Git Repository</h4>
+                    <h4>Git repozitář</h4>
                 </div>
                 <div class="row">
-                    <p>Connect to a Git Repository to load or save your GEDCOM family tree. You can use a hosted service like <a href="https://github.com/" target="_blank">GitHub</a> or <a href="https://gitlab.com/" target="_blank">GitLab</a>, or connect
-                        to a self hosted repository like <a href="https://gitea.io/" target="_blank">Gitea</a>, <a href="https://gogs.io/" target="_blank">Gogs</a>, or <a href="https://github.com/gitbucket/gitbucket" target="_blank">GitBucket</a>.</p>
+                    <p>Připojte se k repozitáři Git, abyste mohli načíst nebo uložit svůj GEDCOM rodokmen. Můžete použít hostovanou službu jako <a href="https://github.com/" target="_blank">GitHub</a> nebo <a href="https://gitlab.com/" target="_blank">GitLab</a>, nebo se připojit k vlastnímu hostovanému repozitáři, jako je <a href="https://gitea.io/" target="_blank">Gitea</a>, <a href="https://gogs.io/" target="_blank">Gogs</a>, nebo <a href="https://github.com/gitbucket/gitbucket" target="_blank">GitBucket</a>.</p>
                 </div>
                 <div class="row">
-                    <h4>Connection Details</h4>
+                    <h4>Podrobnosti o připojení</h4>
                 </div>
                 <div class="row">
                     <div class="input-field">
-                        <label for="gitRepository" class="active">Repository URL</label>
+                        <label for="gitRepository" class="active">URL repozitáře</label>
                         <input id="gitRepository" type="text" v-model="git.repository" />
                     </div>
                     <div class="input-field">
-                        <label for="gitBranch" class="active">Branch</label>
+                        <label for="gitBranch" class="active">Větev (Branch)</label>
                         <input id="gitBranch" type="text" v-model="git.branch" />
                     </div>
                     <div class="input-field">
-                        <label for="gitPersonalAccessToken" class="active">Personal Access Token</label>
+                        <label for="gitPersonalAccessToken" class="active">Osobní přístupový token</label>
                         <input id="gitPersonalAccessToken" type="text" v-model="git.personalAccessToken" />
                     </div>
                     <div class="input-field">
-                        <label for="gitCorsProxy" class="active">CORS Proxy (optional)</label>
+                        <label for="gitCorsProxy" class="active">CORS Proxy (volitelné)</label>
                         <input id="gitCorsProxy" type="text" v-model="git.corsProxy" />
                     </div>
                 </div>
-                <a class="btn waves-effect waves-light modal-close" v-show="git.operation=='load'" v-on:click="loadGitData();"><i class="material-icons left">link</i>Load</a>
-                <a class="btn waves-effect waves-light modal-close" v-show="git.operation=='save'" v-on:click="saveGitData();"><i class="material-icons left">link</i>Save</a>
+                <a class="btn waves-effect waves-light modal-close" v-show="git.operation=='load'" v-on:click="loadGitData();"><i class="material-icons left">link</i>Načíst</a>
+                <a class="btn waves-effect waves-light modal-close" v-show="git.operation=='save'" v-on:click="saveGitData();"><i class="material-icons left">link</i>Uložit</a>
             </div>
             <div class="modal-footer">
-                <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+                <a class="modal-close waves-effect waves-green btn-flat">Zavřít</a>
             </div>
         </div>
 
@@ -346,7 +342,7 @@
                     }
                 },
                 loadExample: function(example) {
-                    if (!stamboom.isLoaded || window.confirm("This will clear the family tree you previously had open.")) {
+                    if (!stamboom.isLoaded || window.confirm("Tímto vymažete dříve otevřený rodokmen.")) {
                         genea.page = "tree";
                         if (example == "new") {
                             fetch("sample/empty.ged").then(function(response) {
@@ -391,7 +387,7 @@
                     }
                 },
                 close: function() {
-                    if ((this.isGitConnected() && !this.git.outstandingChanges) || window.confirm("This will clear the family tree. Changes made will not be saved.")) {
+                    if ((this.isGitConnected() && !this.git.outstandingChanges) || window.confirm("Tímto vymažete rodokmen. Provedené změny nebudou uloženy.")) {
                         // Clear local storage
                         window.localStorage.clear();
                         // Go back to start
@@ -400,7 +396,7 @@
                     return false;
                 },
                 loadFile: function(event) {
-                    if (!stamboom.isLoaded || window.confirm("This will clear the family tree you previously had open.")) {
+                    if (!stamboom.isLoaded || window.confirm("Tímto vymažete dříve otevřený rodokmen.")) {
                         let file = event.srcElement.files[0];
                         let reader = new FileReader();
                         reader.readAsText(file);
@@ -410,7 +406,7 @@
                             stamboom.select();
                         };
                         reader.onerror = function() {
-                            alert("Error reading selected file.");
+                            alert("Chyba při čtení vybraného souboru.");
                         };
                     }
                 },
@@ -429,15 +425,15 @@
                         type: "text/plain"
                     });
                     var share = {
-                        title: "Family Tree",
-                        text: "Authored using Genea.app; https://www.genea.app/",
+                        title: "Rodokmen",
+                        text: "Vytvořeno pomocí Genea.app; https://www.genea.app/",
                         files: [file]
                     }
                     try {
                         navigator.share(share);
                     } catch (e) {
-                        console.log("Error sharing file:", e);
-                        alert("Error sharing file");
+                        console.log("Chyba při sdílení souboru:", e);
+                        alert("Chyba při sdílení souboru");
                     }
                 },
                 openGitModal: function(operation) {
@@ -462,7 +458,7 @@
                 loadGitData: async function() {
                     // Load family tree from a git repository
                     if (!this.isGitConnected()) {
-                        alert("Cannot connect to Git due to a missing Repository URL, Branch, or Personal Access Token.");
+                        alert("Nelze se připojit k Gitu z důvodu chybějící URL repozitáře, větve nebo osobního přístupového tokenu.");
                         return;
                     }
                     try {
@@ -499,10 +495,10 @@
                                 stamboom.select(selectedPerson);
                             }
                         } else {
-                            alert("Cannot load GEDCOM file. Ensure there is a file called 'genea.ged' in the root of the repository.");
+                            alert("Nelze načíst soubor GEDCOM. Ujistěte se, že v kořenovém adresáři repozitáře je soubor s názvem 'genea.ged'.");
                         }
                     } catch (e) {
-                        alert(`Error connecting to Git repository or loading GEDCOM file.\n\nMessage: ${e.message}`);
+                        alert(`Chyba při připojování k repozitáři Git nebo načítání souboru GEDCOM.\n\nZpráva: ${e.message}`);
                     }
                 },
                 saveGit: function() {
@@ -515,7 +511,7 @@
                 saveGitData: async function() {
                     // Save family tree to a git repository
                     if (!this.isGitConnected()) {
-                        alert("Cannot connect to Git due to a missing Repository URL, Branch, or Personal Access Token.");
+                        alert("Nelze se připojit k Gitu z důvodu chybějící URL repozitáře, větve nebo osobního přístupového tokenu.");
                         return;
                     }
                     try {
@@ -556,7 +552,7 @@
                                 name: "Genea.app",
                                 email: "git@genea.app",
                             },
-                            message: `Updated "genea.ged" at ${new Date().toISOString().replace("T", " ").replace("Z", "")}`
+                            message: `Aktualizován "genea.ged" v ${new Date().toISOString().replace("T", " ").replace("Z", "")}`
                         })
                         console.log("Committed:", sha);
                         // Push change
@@ -575,10 +571,10 @@
                         if (pushResult.ok) {
                             this.git.outstandingChanges = false;
                         } else {
-                            alert("Cannot save GEDCOM file.");
+                            alert("Nelze uložit soubor GEDCOM.");
                         }
                     } catch (e) {
-                        alert(`Error connecting to Git repository or saving GEDCOM file.\n\nMessage: ${e.message}`);
+                        alert(`Chyba při připojování k repozitáři Git nebo ukládání souboru GEDCOM.\n\nZpráva: ${e.message}`);
                     }
                 },
                 isLocalStorage: function() {
@@ -677,7 +673,7 @@
                             genea.page = 'tree';
                             stamboom.select(person.id);
                         } else {
-                            alert("Person not found.");
+                            alert("Osoba nenalezena.");
                         }
                         this.el.value = "";
                     }
