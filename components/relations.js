@@ -5,7 +5,7 @@ Vue.component('relations', {
             <div class="row" style="margin-bottom: 0;">
                 <div class="col s12 offset-m1">
                     <h1 class="header">
-                        Parents
+                        Rodiče
                     </h1>
                 </div>
             </div>
@@ -17,7 +17,7 @@ Vue.component('relations', {
                         </li>
                     </ul>
                     <div v-if="!person.parents || person.parents.length==0">
-                        No parents.
+                        Žádní rodiče.
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@ Vue.component('relations', {
             <div class="row" style="margin-bottom: 0;">
                 <div class="col s12 offset-m1">
                     <h1 class="header">
-                        Relations and Children
+                        Vztahy a děti
                     </h1>
                 </div>
             </div>
@@ -46,7 +46,7 @@ Vue.component('relations', {
                         </ul>
                     </template>
                     <div v-if="!person.relations || person.relations.length==0">
-                        No relations or children. Click the Add button to add a new relation.
+                        Žádné vztahy ani děti. Kliknutím na tlačítko Přidat přidáte nový vztah.
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ Vue.component('relations', {
             <div class="row" style="margin-bottom: 0;">
                 <div class="col s12 offset-m1">
                     <h1 class="header">
-                        Relationship Finder
+                        Vyhledávač vztahů
                     </h1>
                 </div>
             </div>
@@ -64,8 +64,8 @@ Vue.component('relations', {
                         <input type="text" id="relationshipFinderInput" v-model="relationshipFinderQuery" 
                                @keyup="updateRelationshipSuggestions" 
                                @focus="showRelationshipSuggestions = true"
-                               placeholder="Type a person's name to find relationship">
-                        <label for="relationshipFinderInput" class="active">Find relationship to:</label>
+                               placeholder="Zadejte jméno pro vyhledání vztahu">
+                        <label for="relationshipFinderInput" class="active">Najít vztah k osobě:</label>
                     </div>
                     <div v-if="showRelationshipSuggestions && filteredPersons.length > 0" class="collection" style="max-height: 200px; overflow-y: auto; margin-top: -20px;">
                         <a v-for="p in filteredPersons" :key="p.id" 
@@ -77,7 +77,7 @@ Vue.component('relations', {
                     </div>
                     <div v-if="relationshipPath && relationshipPath.length > 0" class="card blue-grey lighten-5" style="margin-top: 20px;">
                         <div class="card-content">
-                            <span class="card-title">Relationship Path</span>
+                            <span class="card-title">Příbuzenská linie</span>
                             <div v-for="(step, index) in relationshipPath" :key="index" style="margin-bottom: 15px;">
                                 <div style="display: flex; align-items: center;">
                                     <span style="font-weight: bold; color: #1976d2;">
@@ -91,13 +91,13 @@ Vue.component('relations', {
                                 </div>
                             </div>
                             <div v-if="relationshipSummary" style="margin-top: 20px; padding: 10px; background: white; border-radius: 4px;">
-                                <strong>Summary:</strong> {{relationshipSummary}}
+                                <strong>Shrnutí:</strong> {{relationshipSummary}}
                             </div>
                         </div>
                     </div>
                     <div v-else-if="relationshipPath && relationshipPath.length === 0 && relationshipFinderQuery" class="card orange lighten-4" style="margin-top: 20px;">
                         <div class="card-content">
-                            <span>No relationship path found between these two people.</span>
+                            <span>Mezi těmito dvěma osobami nebyla nalezena žádná příbuzenská linie.</span>
                         </div>
                     </div>
                 </div>
@@ -280,10 +280,10 @@ Vue.component('relations', {
             const father = stamboom.father(personId1);
             const mother = stamboom.mother(personId1);
             if (father && father.id === personId2) {
-                return "is the father of";
+                return "je otec osoby";
             }
             if (mother && mother.id === personId2) {
-                return "is the mother of";
+                return "je matka osoby";
             }
             
             // Check if person2 is child of person1
@@ -292,7 +292,7 @@ Vue.component('relations', {
                 if (rel.children) {
                     for (const child of rel.children) {
                         if (child.id === personId2) {
-                            return "is the child of";
+                            return "je dítě osoby";
                         }
                     }
                 }
@@ -301,7 +301,7 @@ Vue.component('relations', {
             // Check if person2 is spouse/partner of person1
             for (const rel of relations) {
                 if (rel.partner && rel.partner.id === personId2) {
-                    return "is the spouse/partner of";
+                    return "je partner/ka osoby";
                 }
             }
             
@@ -309,24 +309,24 @@ Vue.component('relations', {
             const siblings = stamboom.siblings(personId1);
             for (const sib of siblings) {
                 if (sib.id === personId2) {
-                    return "is the sibling of";
+                    return "je sourozenec osoby";
                 }
             }
             
-            return "is related to";
+            return "je v příbuzenském vztahu s";
         },
         
         generateRelationshipSummary: function(path) {
             if (!path || path.length < 2) return null;
             
-            const start = path[0].person.name || 'Person';
-            const end = path[path.length - 1].person.name || 'Person';
+            const start = path[0].person.name || 'Osoba';
+            const end = path[path.length - 1].person.name || 'Osoba';
             const distance = path.length - 1;
             
             if (distance === 1) {
-                return `${start} ${path[0].relationship} ${end} (direct relationship)`;
+                return `${start} ${path[0].relationship} ${end} (přímý vztah)`;
             } else {
-                return `${start} and ${end} are ${distance} step(s) apart in the family tree`;
+                return `${start} a ${end} jsou od sebe v rodokmenu na vzdálenost ${distance} kroků`;
             }
         },
         
@@ -334,14 +334,14 @@ Vue.component('relations', {
             this.$parent.$refs.modalNewPerson.open();
         },
         unlinkChild: function(childId) {
-            if (window.confirm("Confirm you want to remove this child from the relation.")) {
+            if (window.confirm("Opravdu chcete odebrat toto dítě z tohoto vztahu?")) {
                 stamboom.removeChild(childId);
                 // Force update
                 stamboom.select(this.person.id);
             }
         },
         unlinkPartner: function(relationId) {
-            if (window.confirm("Confirm you want to remove this relation.")) {
+            if (window.confirm("Opravdu chcete odstranit tento vztah?")) {
                 stamboom.removeRelation(relationId);
                 // Force update
                 stamboom.select(this.person.id);
