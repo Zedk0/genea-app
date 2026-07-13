@@ -30,9 +30,9 @@ Vue.component('tree', {
             this.$root.person.relations = stamboom.getRelations(id);
             this.$root.person.parents = stamboom.getParents(id);
             if (this.$root.isDebug()) {
-                console.log("Person:", this.$root.person);
-                console.log("Relations:", this.$root.person.relations);
-                console.log("Parents:", this.$root.person.parents);
+                console.log("Osoba:", this.$root.person);
+                console.log("Vztahy:", this.$root.person.relations);
+                console.log("Rodiče:", this.$root.person.parents);
             }
             var page = this.$root.page;
             if (!["tree", "personaldetails", "relations"].includes(page)) {
